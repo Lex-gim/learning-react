@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Afacad Flux', sans-serif;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tw-followCard {
+    min-width: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.tw-followCard .tw-followCard-header {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.tw-followCard .tw-followCard-header .tw-followCard-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 0 5px;
+}
+
+.tw-followCard .tw-followCard-header .tw-followCard-info strong {
+    font-size: 1.25em;
+}
+
+.tw-followCard .tw-followCard-header .tw-followCard-info span {
+    font-size: 1em;
+    color: #ffffff6b;
+}
+
+.tw-followCard .tw-followCard-avatar {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.tw-followCard .tw-followCard-btn {
+    cursor: pointer;
+    background: #ffffff;
+    color: black;
+    width: fit-content;
+    height: 30px;
+    padding: 0 15px;
+    margin: 0 10px;
+    border-radius: 30px;
+    font-size: 1.125em;
+    border: 0;
+    outline: none;
+    transition: scale .3s, background-color .3s, border .3s;
+}
+
+.tw-followCard .tw-followCard-btn:hover {
+    background-color: #b4b4b4;
+    scale: 1.2;
+}
+
+.tw-followCard-btn.is-following {
+    border: 1px solid #ffffff;
+    background: #000;
+    color: #ffffff;
+}
+
+.tw-followCard-btn.is-following:hover {
+    color: #ce0000;
+    background: #b6000033;
+    border: 1.5px solid #ce0000;
+}
+
+.tw-followCard-btn .tw-followCard-btn--stopFollowing-text {
+    display: none;
+}
+
+.tw-followCard-btn.is-following:hover .tw-followCard-btn--stopFollowing-text {
+    display: block;
+}
+
+.tw-followCard-btn.is-following:hover .tw-followCard-btn--text {
+    display: none;
+}
+
+
