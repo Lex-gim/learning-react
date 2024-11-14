@@ -1,20 +1,19 @@
 import confetti from 'canvas-confetti'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Square } from './components/Square'
 import { TURNS } from './constants'
 import { checkWinner, checkEndGame } from './logic/board'
 import { WinnerModal } from './components/WinnerModal'
 import './App.css'
+import { resetGameStorage, saveGameToStorage } from './logic'
 
 function App() {
   const [board, setBoard] = useState(()=> {
-    console.log('Initialize State');
     const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
   })
   const [turn, setTurn] = useState(() => {
-    console.log('Initialize Turn');
     const turnFromStorage = window.localStorage.getItem('turn')
     return turnFromStorage ?? TURNS.X
   })
@@ -26,8 +25,7 @@ function App() {
     setTurn(TURNS.X)
     setWinner(null)
 
-    window.localStorage.removeItem('board')
-    window.localStorage.removeItem('turn')
+    resetGameStorage()
   }
 
   const updateBoard = (index) => {
@@ -43,8 +41,10 @@ function App() {
     const newTurn = turn === TURNS.X?TURNS.O:TURNS.X
     setTurn(newTurn)
 
-    window.localStorage.setItem('board', JSON.stringify(newBoard))
-    window.localStorage.setItem('turn', turn)
+    saveGameToStorage({
+      board: newBoard,
+      turn: newTurn
+    })
     //revisar si hay ganador
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
