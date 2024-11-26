@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <Header />
+      <Form />
       <section className="carousel">
         <Card
           imgSrc="https://via.placeholder.com/150"
@@ -18,8 +19,13 @@ function App() {
           title="Malia"
           desc="La mujer más preciosa"
         />
+        <Card
+          imgSrc="https://via.placeholder.com/180"
+          title="Mei"
+          desc="Gato gei"
+        />
+        <Card />
       </section>
-      <Form />
       <Footer />
     </>
   )
