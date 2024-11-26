@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root {
+    --dark-blue: #00151f;
+    --transparent-border: #ffffff21;
+    --teal: #00acd373;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +14,70 @@
 }
 
 body {
-    background: #333333;
+    background: #000000;
+}
+
+.header {
+    position: fixed;
+    width: 100dvw;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5%;
+    background: var(--dark-blue);
+    border-bottom: 2px solid var(--transparent-border);
+    box-shadow: 0 5px 5px var(--dark-blue);
+    z-index: 1000;
+}
+
+.header > .welcome-text {
+    font-size: 2em;
+    font-weight: 700;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar > a{
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.navbar > a::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--transparent-border);
+    transition: width .2s ease;
+}
+
+.navbar > a:hover::after {
+    width: 100%;
+}
+
+.question-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.question { 
+    font-size: 3em;
+    color: #fff;
+}
+
+.carousel-container {
+    height: 400px;
+    align-content: center;
 }
 
 .carousel {
@@ -18,9 +87,8 @@ body {
     gap: 12px;
     background: linear-gradient(180deg, #ffffff10, #ffffff18);
     backdrop-filter: blur(30px);
-    border-top: 1px solid #ffffff23;
-    border-bottom: 1px solid #ffffff23;
     padding: 5px;
+    height: 60px;
 }
 
 .card {
@@ -32,34 +100,10 @@ body {
     flex-direction: column;
     padding: 10px;
     gap: 8px;
+    border: 2px solid var(--transparent-border);
     border-radius: 10px;
     overflow: hidden;
-    transition: transform .3s ease;
-}
-
-.card:hover {
-    transform: scale(1.125);
-}
-
-.carousel:hover .card:not(:hover){
-    transform: scale(.9);
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #e9e9e9e7, #adadade7);
-    transition: opacity 0.3s;
-    opacity: 0;
-    z-index: 0;
-}
-
-.card:hover::before {
-    opacity: 1;
+    transition: transform .3s ease, border-color .3s ease, border-width .3s ease;
 }
 
 .card > * {
@@ -69,27 +113,59 @@ body {
 .card > img {
     border-radius: 5px 5px 0 0;
     border-bottom: 2px solid #fff;
+    transition: border .2s ease;
 }
 
-.card > h1 {
+.card > span {
     color: #fff;
+    font-weight: 600;
+    font-size: 1.25em;
     margin-top: 5px;
     text-align: center;
     font-family: "Afacad Flux", serif;
+    transition: color .2s ease;
 }
 
 .card > p {
     font-size: .9em;
     color: #dadada;
+    transition: color .2s ease;
 }
 
-ul {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.card:hover {
+    transform: scale(1.125);
+    border-width: 5px;
+    border-color: var(--teal);
 }
 
-li > a{
-    text-decoration: none;
-    color: black;
+.carousel:hover .card:not(:hover){
+    transform: scale(.9);
+    border-color: none;
+    border-width: 0;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #e9e9e99c, #929292b6);
+    transition: opacity 0.3s;
+    opacity: 0;
+    z-index: 0;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover > span,
+.card:hover > p {
+    color: #000;
+}
+
+.card:hover > img {
+    border-color: #000;
 }
